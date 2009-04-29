@@ -1,5 +1,5 @@
 package Email::MIME::Kit::KitReader::SWAK;
-our $VERSION = '1.000';
+our $VERSION = '1.001';
 
 use Moose;
 with 'Email::MIME::Kit::Role::KitReader';
@@ -11,7 +11,8 @@ use Path::Resolver::Resolver::FileSystem;
 use Path::Resolver::Resolver::AnyDist;
 
 has resolver => (
-  is       => 'ro',
+  reader   => 'resolver',
+  writer   => '_set_resolver',
   does     => 'Path::Resolver::Role::Resolver',
   init_arg => undef,
   lazy     => 1,
@@ -71,7 +72,7 @@ Email::MIME::Kit::KitReader::SWAK - the swiss army knife of EMK kit readers
 
 =head1 VERSION
 
-version 1.000
+version 1.001
 
 =head1 DESCRIPTION
 
