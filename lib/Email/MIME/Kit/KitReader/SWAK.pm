@@ -1,5 +1,6 @@
 package Email::MIME::Kit::KitReader::SWAK;
-our $VERSION = '1.001';
+our $VERSION = '1.093060';
+
 
 use Moose;
 with 'Email::MIME::Kit::Role::KitReader';
@@ -48,7 +49,7 @@ has fs_root => (
 sub get_kit_entry {
   my ($self, $path) = @_;
 
-  my $content = $self->resolver->content_for($path);
+  my $content = $self->resolver->entity_at($path)->content_ref;
   return $content if $content;
 
   confess "no content for $path";
@@ -63,7 +64,6 @@ no Moose;
 __PACKAGE__->meta->make_immutable;
 
 __END__
-
 =pod
 
 =head1 NAME
@@ -72,7 +72,7 @@ Email::MIME::Kit::KitReader::SWAK - the swiss army knife of EMK kit readers
 
 =head1 VERSION
 
-version 1.001
+version 1.093060
 
 =head1 DESCRIPTION
 
@@ -81,17 +81,17 @@ letting your kit refer to resources in locations other than the kit itself.
 
 In your manifest (assuming it's YAML, for readability):
 
-    ---
-    kit_reader: SWAK
-    attachments:
-    - type: text/html
-      path: template.html
+  ---
+  kit_reader: SWAK
+  attachments:
+  - type: text/html
+    path: template.html
 
-    - type: text/plain
-      path: /dist/Your-App/config.conf
+  - type: text/plain
+    path: /dist/Your-App/config.conf
 
-    - type: text/plain
-      path: /fs/etc/motd
+  - type: text/plain
+    path: /fs/etc/motd
 
 This will find the first file in the kit (the absolute path prefix F</kit>
 could also be used), the second file in the L<File::ShareDir|File::ShareDir>
@@ -109,8 +109,7 @@ other than root.
 This software is copyright (c) 2009 by Ricardo SIGNES.
 
 This is free software; you can redistribute it and/or modify it under
-the same terms as perl itself.
+the same terms as the Perl 5 programming language system itself.
 
-=cut 
-
+=cut
 

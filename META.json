@@ -1,0 +1,21 @@
+{
+   "resources" : {
+      "repository" : "http://github.com/rjbs/email-mime-kit-kitreader-swak"
+   },
+   "meta-spec" : {
+      "version" : 1.4,
+      "url" : "http://module-build.sourceforge.net/META-spec-v1.4.html"
+   },
+   "generated_by" : "Dist::Zilla version 1.092990",
+   "version" : "1.093060",
+   "name" : "Email-MIME-Kit-KitReader-SWAK",
+   "author" : [
+      "Ricardo SIGNES <rjbs@cpan.org>"
+   ],
+   "license" : "perl",
+   "requires" : {
+      "Path::Resolver" : "3.092200",
+      "Email::MIME::Kit" : "2.002"
+   },
+   "abstract" : "the swiss army knife of EMK kit readers"
+}
