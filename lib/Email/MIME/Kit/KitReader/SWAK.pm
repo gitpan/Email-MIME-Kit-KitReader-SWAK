@@ -1,7 +1,7 @@
 package Email::MIME::Kit::KitReader::SWAK;
-our $VERSION = '1.093060';
-
-
+{
+  $Email::MIME::Kit::KitReader::SWAK::VERSION = '1.093061';
+}
 use Moose;
 with 'Email::MIME::Kit::Role::KitReader';
 # ABSTRACT: the swiss army knife of EMK kit readers
@@ -72,7 +72,7 @@ Email::MIME::Kit::KitReader::SWAK - the swiss army knife of EMK kit readers
 
 =head1 VERSION
 
-version 1.093060
+version 1.093061
 
 =head1 DESCRIPTION
 
@@ -102,11 +102,11 @@ other than root.
 
 =head1 AUTHOR
 
-  Ricardo SIGNES <rjbs@cpan.org>
+Ricardo SIGNES <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2009 by Ricardo SIGNES.
+This software is copyright (c) 2011 by Ricardo SIGNES.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
