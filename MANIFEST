@@ -7,9 +7,12 @@ Makefile.PL
 README
 dist.ini
 lib/Email/MIME/Kit/KitReader/SWAK.pm
+t/00-compile.t
+t/000-report-versions-tiny.t
 t/basic.t
 t/misc/fourth.txt
 t/mkits/basic.mkit/first.txt
 t/mkits/basic.mkit/manifest.json
 t/mkits/basic.mkit/second.txt
-t/release-pod-syntax.t
+xt/release/changes_has_content.t
+xt/release/pod-syntax.t

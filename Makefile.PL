@@ -11,12 +11,7 @@ use ExtUtils::MakeMaker 6.30;
 my %WriteMakefileArgs = (
   "ABSTRACT" => "the swiss army knife of EMK kit readers",
   "AUTHOR" => "Ricardo SIGNES <rjbs\@cpan.org>",
-  "BUILD_REQUIRES" => {
-    "Email::MIME::Kit" => "2.002",
-    "Test::More" => "0.96",
-    "strict" => 0,
-    "warnings" => 0
-  },
+  "BUILD_REQUIRES" => {},
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => "6.30"
   },
@@ -26,19 +21,40 @@ my %WriteMakefileArgs = (
   "NAME" => "Email::MIME::Kit::KitReader::SWAK",
   "PREREQ_PM" => {
     "Email::MIME::Kit" => "2.002",
-    "Email::MIME::Kit::Role::KitReader" => 0,
-    "Moose" => 0,
+    "Email::MIME::Kit::Role::KitReader" => "0",
+    "Moose" => "0",
     "Path::Resolver" => "3.092200",
-    "Path::Resolver::Resolver::AnyDist" => 0,
-    "Path::Resolver::Resolver::FileSystem" => 0,
-    "Path::Resolver::Resolver::Mux::Prefix" => 0
+    "Path::Resolver::Resolver::AnyDist" => "0",
+    "Path::Resolver::Resolver::FileSystem" => "0",
+    "Path::Resolver::Resolver::Mux::Prefix" => "0"
   },
-  "VERSION" => "1.093061",
+  "TEST_REQUIRES" => {
+    "Capture::Tiny" => "0",
+    "Email::MIME::Kit" => "2.002",
+    "Test::More" => "0.96",
+    "blib" => "0",
+    "strict" => "0",
+    "warnings" => "0"
+  },
+  "VERSION" => "1.093062",
   "test" => {
     "TESTS" => "t/*.t"
   }
 );
 
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
+  my $tr = delete $WriteMakefileArgs{TEST_REQUIRES};
+  my $br = $WriteMakefileArgs{BUILD_REQUIRES};
+  for my $mod ( keys %$tr ) {
+    if ( exists $br->{$mod} ) {
+      $br->{$mod} = $tr->{$mod} if $tr->{$mod} > $br->{$mod};
+    }
+    else {
+      $br->{$mod} = $tr->{$mod};
+    }
+  }
+}
 
 unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
   my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
